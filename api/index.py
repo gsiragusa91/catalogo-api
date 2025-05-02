@@ -29,7 +29,7 @@ products = [
 
 @app.get("/")
 def root():
-    return {"message": "Bienvenido al catálogo"}
+    return {"message": "API funcionando correctamente en Vercel"}
 
 @app.get("/products", response_model=List[Product])
 def get_products():
