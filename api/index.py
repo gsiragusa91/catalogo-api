@@ -18,10 +18,6 @@ def root():
 def get_products():
     return products
 
-@app.get("/products/{product_id}")
-def get_product(product_id: int):
-    return next((p for p in products if p["id"] == product_id), {"error": "Producto no encontrado"})
-
 @app.get("/products/search")
 def search_products(name: Optional[str] = None, exact: Optional[bool] = False):
     if not name:
@@ -29,3 +25,7 @@ def search_products(name: Optional[str] = None, exact: Optional[bool] = False):
     if exact:
         return [p for p in products if name.lower() == p["title"].lower()]
     return [p for p in products if name.lower() in p["title"].lower()]
+
+@app.get("/products/{product_id}")
+def get_product(product_id: int):
+    return next((p for p in products if p["id"] == product_id), {"error": "Producto no encontrado"})
