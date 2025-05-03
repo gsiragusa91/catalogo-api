@@ -1,19 +1,20 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import Optional
+from collections import OrderedDict
 
 app = FastAPI()
 
-# Modelo de producto con validaciones
+# Modelo de entrada (sin ID)
 class Product(BaseModel):
-    title: str = Field(..., example="Mochila Urbana")
-    description: str = Field(..., example="Mochila liviana para uso diario")
-    price: float = Field(..., gt=0, example=49.99)
-    stock: int = Field(..., ge=0, example=120)
-    category: str = Field(..., example="Accesorios")
+    title: str = Field(..., example="Auriculares Bluetooth")
+    description: str = Field(..., example="Auriculares con cancelación de ruido")
+    price: float = Field(..., gt=0, example=59.99)
+    stock: int = Field(..., ge=0, example=100)
+    category: str = Field(..., example="Electrónica")
     image_url: str = Field(..., example="https://via.placeholder.com/150")
 
-# Base de datos en memoria con 10 productos
+# Base de datos en memoria
 products = [
     {
         "id": 1,
@@ -130,40 +131,20 @@ def get_product(product_id: int):
         return product
     raise HTTPException(status_code=404, detail="Producto no encontrado")
 
-class ProductOut(BaseModel):
-    id: int
-    title: str
-    description: str
-    price: float
-    stock: int
-    category: str
-    image_url: str
-
-    class Config:
-        fields = {
-            "id": {"order": 0},
-            "title": {"order": 1},
-            "description": {"order": 2},
-            "price": {"order": 3},
-            "stock": {"order": 4},
-            "category": {"order": 5},
-            "image_url": {"order": 6}
-        }
-        use_enum_values = True
-
-@app.post("/products", response_model=ProductOut, status_code=201)
+@app.post("/products", status_code=201)
 def create_product(product: Product):
     new_id = max([p["id"] for p in products]) + 1 if products else 1
-    new_product = ProductOut(id=new_id, **product.dict())
-    products.append(new_product.dict())
-    return new_product
+    ordered = OrderedDict()
+    ordered["id"] = new_id
+    ordered.update(product.dict())
+    products.append(ordered)
+    return ordered
 
 @app.put("/products/{product_id}")
 def update_product(product_id: int, updated_product: Product):
     for i, p in enumerate(products):
         if p["id"] == product_id:
-            products[i] = updated_product.dict()
-            products[i]["id"] = product_id
+            products[i] = OrderedDict(id=product_id, **updated_product.dict())
             return products[i]
     raise HTTPException(status_code=404, detail="Producto no encontrado")
 
