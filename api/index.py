@@ -26,6 +26,7 @@ class Product(BaseModel):
     image_url: str = Field(..., example="https://via.placeholder.com/150")
 
 # Base de datos en memoria
+
 products = [
     {
         "id": 1,
@@ -34,7 +35,7 @@ products = [
         "price": 59.99,
         "stock": 120,
         "category": "Electrónica",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_893804-MLA52334469476_112022-F.webp"
     },
     {
         "id": 2,
@@ -43,7 +44,7 @@ products = [
         "price": 89.99,
         "stock": 85,
         "category": "Deportes",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_995491-MLA71637919512_092023-F.webp"
     },
     {
         "id": 3,
@@ -52,7 +53,7 @@ products = [
         "price": 45.00,
         "stock": 150,
         "category": "Accesorios",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_789732-MLA70119474986_062023-F.webp"
     },
     {
         "id": 4,
@@ -61,52 +62,52 @@ products = [
         "price": 40.00,
         "stock": 80,
         "category": "Accesorios",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_969790-MLA75113134435_032024-F.webp"
     },
     {
         "id": 5,
-        "title": "Mochila Urbana",
-        "description": "Diseño minimalista con espacio para notebook",
-        "price": 55.00,
-        "stock": 60,
-        "category": "Accesorios",
-        "image_url": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 6,
         "title": "Smartwatch Pro",
         "description": "Reloj inteligente con GPS y monitoreo de salud",
         "price": 129.50,
         "stock": 60,
         "category": "Electrónica",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_849174-MLA48628251441_122021-F.webp"
     },
     {
-        "id": 7,
+        "id": 6,
         "title": "Smartwatch Mini",
         "description": "Versión compacta de smartwatch con funciones básicas",
         "price": 79.90,
         "stock": 90,
         "category": "Electrónica",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_963257-MLA75308518735_032024-F.webp"
     },
     {
-        "id": 8,
+        "id": 7,
         "title": "Camiseta Deportiva",
         "description": "Camiseta de secado rápido para entrenamiento",
         "price": 29.90,
         "stock": 200,
         "category": "Ropa",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_758838-MLA70139309851_062023-F.webp"
     },
     {
-        "id": 9,
+        "id": 8,
         "title": "Camiseta Casual",
         "description": "Camiseta de algodón para uso diario",
         "price": 25.00,
         "stock": 170,
         "category": "Ropa",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_944669-MLA72455999164_102023-F.webp"
+    },
+    {
+        "id": 9,
+        "title": "Laptop Pro",
+        "description": "Laptop de alto rendimiento para profesionales",
+        "price": 999.99,
+        "stock": 30,
+        "category": "Electrónica",
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_853453-MLA70390214153_072023-F.webp"
     },
     {
         "id": 10,
@@ -115,7 +116,7 @@ products = [
         "price": 1299.99,
         "stock": 20,
         "category": "Electrónica",
-        "image_url": "https://via.placeholder.com/150"
+        "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_982365-MLA75364010262_032024-F.webp"
     }
 ]
 
