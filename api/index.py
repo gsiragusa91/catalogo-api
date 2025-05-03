@@ -130,8 +130,26 @@ def get_product(product_id: int):
         return product
     raise HTTPException(status_code=404, detail="Producto no encontrado")
 
-class ProductOut(Product):
+class ProductOut(BaseModel):
     id: int
+    title: str
+    description: str
+    price: float
+    stock: int
+    category: str
+    image_url: str
+
+    class Config:
+        fields = {
+            "id": {"order": 0},
+            "title": {"order": 1},
+            "description": {"order": 2},
+            "price": {"order": 3},
+            "stock": {"order": 4},
+            "category": {"order": 5},
+            "image_url": {"order": 6}
+        }
+        use_enum_values = True
 
 @app.post("/products", response_model=ProductOut, status_code=201)
 def create_product(product: Product):
