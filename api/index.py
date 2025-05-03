@@ -136,10 +136,9 @@ class ProductOut(Product):
 @app.post("/products", response_model=ProductOut, status_code=201)
 def create_product(product: Product):
     new_id = max([p["id"] for p in products]) + 1 if products else 1
-    new_product = product.dict()
-    new_product["id"] = new_id
-    products.append(new_product)
-    return ProductOut(id=new_id, **product.dict())
+    new_product = ProductOut(id=new_id, **product.dict())
+    products.append(new_product.dict())
+    return new_product
 
 @app.put("/products/{product_id}")
 def update_product(product_id: int, updated_product: Product):
